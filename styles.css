@@ -1,0 +1,409 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+:root {
+  /* Font sizes */
+  --bg_font_size: 1rem;
+  --sm_font_size: .7rem;
+  /* Ends font sizes */
+
+  /* Font weight */
+  --lg_font_weight: 1rem;
+  --md_font_weight: .7rem;
+  --sm_font_weight: .5rem;
+  /* Ends font weight */
+
+  /* Text colors */
+  --very_dark_color: black;
+  --semi_dark_color: #444;
+  --semi_light_color: #ddd;
+  --very_light_color: white;
+  --grey_color: grey;
+  /* Ends text colors */
+
+  /* Dark gaming colors */
+  --dark_green_color: darkgreen;
+  --dark_yellow_color: gold;
+  --dark_red_color: darkred;
+  --dark_blue_color: darkblue;
+  /* Ends dark gaming colors */
+
+  /* Normal gaming colors */
+  --green_color: green;
+  --yellow_color: yellow;
+  --red_color: red;
+  --blue_color: blue;
+  /* Ends normal gaming colors */
+  
+  /* Light gaming colors */
+  --light_green_color: lightgreen;
+  --light_yellow_color: lightyellow;
+  --light_red_color: rgb(206, 98, 98);
+  --light_blue_color: lightblue;
+  /* Ends light gaming colors */
+
+  /* Box sizes */
+  --container_size: 500px;
+  /* Box sizes */
+
+  /* Box shadows */
+  --main_box_shadow: none;
+  --element_box_shadow: none; /* for buttons and input fields */
+  --segment_box_shadow: none;  /* for game dashboard, game board etc */
+  /* End box shadows */
+}
+
+/* General classes */
+.section_2 span, input, button {
+  cursor: pointer;
+  user-select: none;
+}
+
+.relative_position {
+  position: relative; 
+}
+/* Ends general classes */
+
+
+/* Entire game container */
+.container {
+  position: relative;
+}
+
+/* Game and dashboard container */
+.game_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 900px;
+  max-width: 600px;
+  margin: .8rem auto;
+  padding: 5px;
+  border: 5px solid var(--very_dark_color);
+  border-radius: 15px;
+}
+
+/* Game container header section */
+.game_container header {
+  border: 1px solid var(--grey_color); 
+  border-radius: 10px; 
+  width: 98%; 
+  height: auto; 
+  margin: auto; 
+  padding: .7rem; 
+  display: grid;
+  grid-template-columns: 2fr 1fr; 
+  justify-content: center; 
+  align-items: center; 
+  grid-gap: .7rem; 
+  user-select: none;
+}
+
+/* Players score dashboard and button container */
+.header_grid_box_1 { 
+  width: 100%;
+  height: 90%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  justify-content: center;
+  align-items: center;
+  grid-gap: 1rem;
+  padding: .2rem;
+  border-right: 1px solid var(--grey_color);
+} 
+
+/* Players score dashboard and Action buttons */
+.game_container header .section_1, .game_container header .section_2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.game_container header .section_1 > span, .game_container header .section_2 > span {
+  margin: .2rem auto;
+  padding: .2rem;
+  width: 80%;
+  max-width: 80%;
+  font-size: .8rem;
+  border-bottom: .1rem dotted var(--grey_color);
+}
+
+.game_container header .header_grid_box_1 .section_2 span {
+  border: .1rem solid var(--grey_color);
+  border-radius: .5rem;
+  text-align: center;
+  padding: 5px;
+}
+/* Ends players score dashboard and Action buttons */
+
+/* Dice container */
+#dice_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: .5rem;
+  width: 100%;
+  margin: 1rem auto;
+}
+
+#dice_container > * { 
+  text-align: center; 
+  border: .1px solid var(--grey_color); 
+  border-radius: 10px; 
+  outline: none;
+}
+
+#dice_container > input { 
+  font-size: 2rem;
+  font-weight: 1000;
+  padding: .5rem;
+  width: 100%;
+} 
+
+#dice_container > button, #players_turn {
+  grid-column: span 2;
+  padding: .5rem;
+  font-size: 1rem;
+  font-weight: 1000;
+}
+/* Ends dice container */
+
+/* Game container */
+.ludo_container {
+  display: grid;
+  grid-template-columns: 5fr 3fr 5fr;
+  grid-template-rows: 5fr 3fr 5fr;
+  width: 98%;
+  height: 600px;
+  margin: 1rem auto auto auto;
+  padding: 10px;
+  border: 1px solid var(--grey_color);
+  border-radius: 1rem;
+  /* box-shadow: inset; */
+}
+
+.player_house, #seed_home_container, .playing_path_container {
+  border: .3px solid;
+}
+
+/* The center of the ludo game with different colors in arrow form */
+#seed_home_container {
+  width: 100%;
+  height: 100%;
+  border-left: 75px solid var(--dark_green_color);
+  border-top: 75px solid var(--dark_yellow_color);
+  border-right: 75px solid var(--dark_blue_color);
+  border-bottom: 75px solid var(--red_color);
+}
+/* Ends the center of the ludo game with different colors in arrow form */
+
+/* All home seed container */
+.player_house {
+  padding: 1rem;
+}
+
+.player_house .seed_container {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Seed container immediate housing */
+#green_house .seed_container span { border: .5rem solid var(--dark_green_color); }
+#yellow_house .seed_container span { border: .5rem solid var(--dark_yellow_color); }
+#red_house .seed_container span { border: .5rem solid var(--red_color); }
+#blue_house .seed_container span { border: .5rem solid var(--dark_blue_color); }
+
+/* Each seed housing container */
+.player_house .seed_container span.first_seed { border-top-left-radius: 50%; }
+.player_house .seed_container span.second_seed { border-top-right-radius: 50%; }
+.player_house .seed_container span.third_seed { border-bottom-left-radius: 50%; }
+.player_house .seed_container span.fourth_seed { border-bottom-right-radius: 50%; }
+
+/*  */
+#green_seed_container { border: .8rem solid var(--dark_green_color); }
+#yellow_seed_container { border: .8rem solid var(--dark_yellow_color); }
+#red_seed_container { border: .8rem solid var(--red_color); }
+#blue_seed_container { border: .8rem solid var(--dark_blue_color); }
+
+/*  */
+.green_seed.available_seed::before { background: var(--dark_green_color); }
+.yellow_seed.available_seed::before { background: var(--dark_yellow_color); }
+.red_seed.available_seed::before { background: var(--red_color); }
+.blue_seed.available_seed::before { background: var(--dark_blue_color); }
+
+/* Playing path container */
+.playing_path_container {
+  display: grid;
+}
+
+/* Playing path vertical container */
+.playing_path_container.vertical {
+  grid-template-columns: repeat(3, 1fr)
+}
+
+/* Playing path horizontal container */
+.playing_path_container.horizontal {
+    grid-template-columns: repeat(6, 1fr)
+}
+
+.playing_path_container .playing_path, .home_path {
+  border: 1px solid;
+  height: auto; 
+  width: auto;
+  position: relative;
+}
+
+/*  */
+.playing_path.green_grid_box, .home_path.green_home_path { background: var(--dark_green_color); }
+.playing_path.yellow_grid_box, .home_path.yellow_home_path { background: var(--dark_yellow_color); }
+.playing_path.red_grid_box, .home_path.red_home_path { background: var(--red_color); }
+.playing_path.blue_grid_box, .home_path.blue_home_path { background: var(--dark_blue_color); }
+
+/*  */
+.available_seed::before, .playing_path.active_seed::before , .playing_path.double_active_seed::before, .playing_path.triple_active_seed::before , .playing_path.quadruple_active_seed::before,
+.seed_node.active_seed::before , .seed_node.double_active_seed::before, .seed_node.triple_active_seed::before , .seed_node.quadruple_active_seed::before,
+.available_seed::before, .home_path.active_seed::before , .home_path.double_active_seed::before, .home_path.triple_active_seed::before , .home_path.quadruple_active_seed::before {
+  content: "";
+  width: 25px;
+  height: 25px; 
+  border: .4px solid;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: .8rem;
+  cursor: pointer;
+} 
+
+/*  */
+.playing_path.double_active_seed::before, .home_path.double_active_seed::before { content: "2"; border: .8px solid; font-weight: 400; }
+.playing_path.triple_active_seed::before, .home_path.triple_active_seed::before { content: "3"; border: 1.2px solid; font-weight: 600;}
+.playing_path.quadruple_active_seed::before, .home_path.quadruple_active_seed::before { content: "4"; border: 1.8px solid; font-weight: 800; }
+
+/*  */
+.playing_path.active_seed.active_green::before, .playing_path.double_active_seed.double_active_green::before, .playing_path.triple_active_seed.triple_active_green::before , .playing_path.quadruple_active_seed.quadruple_active_green::before { background: var(--green_color); }
+.playing_path.active_seed.active_yellow::before, .playing_path.double_active_seed.double_active_yellow::before, .playing_path.triple_active_seed.triple_active_yellow::before , .playing_path.quadruple_active_seed.quadruple_active_yellow::before { background: var(--dark_yellow_color); }
+.playing_path.active_seed.active_red::before, .playing_path.double_active_seed.double_active_red::before, .playing_path.triple_active_seed.triple_active_red::before , .playing_path.quadruple_active_seed.quadruple_active_red::before { background: var(--red_color); } 
+.playing_path.active_seed.active_blue::before, .playing_path.double_active_seed.double_active_blue::before, .playing_path.triple_active_seed.triple_active_blue::before , .playing_path.quadruple_active_seed.quadruple_active_blue::before { background: var(--dark_blue_color); color: #ddd; } 
+
+/*  */
+.playing_path.green_grid_box.active_seed.active_green::before, .home_path.green_grid_box.active_seed.active_green::before { background: var(--green_color); }
+.playing_path.yellow_grid_box.active_seed.active_yellow::before, .home_path.yellow_grid_box.active_seed.active_yellow::before { background: var(--dark_yellow_color); }
+.playing_path.red_grid_box.active_seed.active_red::before, .home_path.red_grid_box.active_seed.active_red::before { background: var(--red_color); }
+.playing_path.blue_grid_box.active_seed.active_blue::before, .home_path.blue_grid_box.active_seed.active_blue::before { background: var(--blue_color); }
+
+/*  */
+.home_path.active_seed.active_green::before, .home_path.double_active_seed.double_active_green::before, .home_path.triple_active_seed.triple_active_green::before , .home_path.quadruple_active_seed.quadruple_active_green::before { background: var(--dark_green_color); }
+.home_path.active_seed.active_yellow::before, .home_path.double_active_seed.double_active_yellow::before, .home_path.triple_active_seed.triple_active_yellow::before , .home_path.quadruple_active_seed.quadruple_active_yellow::before { background: var(--dark_yellow_color); }
+.home_path.active_seed.active_red::before, .home_path.double_active_seed.double_active_red::before, .home_path.triple_active_seed.triple_active_red::before , .home_path.quadruple_active_seed.quadruple_active_red::before { background: var(--red_color); } 
+.home_path.active_seed.active_blue::before, .home_path.double_active_seed.double_active_blue::before, .home_path.triple_active_seed.triple_active_blue::before , .home_path.quadruple_active_seed.quadruple_active_blue::before { background: var(--dark_blue_color); } 
+
+/*  */
+.home_path.green_grid_box.active_seed.active_green::before, .home_path.green_grid_box.double_active_seed.double_active_green::before, .home_path.green_grid_box.triple_active_seed.triple_active_green::before, .home_path.green_grid_box.quadruple_active_seed.quadruple_active_green::before { background: var(--light_green_color); cursor: pointer; }
+.home_path.yellow_grid_box.active_seed.active_yellow::before, .home_path.yellow_grid_box.double_active_seed.double_active_yellow::before, .home_path.yellow_grid_box.triple_active_seed.triple_active_yellow::before, .home_path.yellow_grid_box.quadruple_active_seed.quadruple_active_yellow::before { background: var(--yellow_color); cursor: pointer; }
+.home_path.blue_grid_box.active_seed.active_blue::before, .home_path.blue_grid_box.double_active_seed.double_active_blue::before, .home_path.blue_grid_box.triple_active_seed.triple_active_blue::before, .home_path.blue_grid_box.quadruple_active_seed.quadruple_active_blue::before { background: var(--blue_color); color: white; cursor: pointer; } 
+.home_path.red_grid_box.active_seed.active_red::before, .home_path.red_grid_box.double_active_seed.double_active_red::before, .home_path.red_grid_box.triple_active_seed.triple_active_red::before, .home_path.red_grid_box.quadruple_active_seed.quadruple_active_red::before { background: var(--dark_red_color); cursor: pointer; }
+
+/*  */
+.playing_path.green_grid_box.active_seed.active_green::before, .playing_path.green_grid_box.double_active_seed.double_active_green::before, .playing_path.green_grid_box.triple_active_seed.triple_active_green::before, .playing_path.green_grid_box.quadruple_active_seed.quadruple_active_green::before { background: var(--light_green_color); cursor: pointer; }
+.playing_path.yellow_grid_box.active_seed.active_yellow::before, .playing_path.yellow_grid_box.double_active_seed.double_active_yellow::before, .playing_path.yellow_grid_box.triple_active_seed.triple_active_yellow::before, .playing_path.yellow_grid_box.quadruple_active_seed.quadruple_active_yellow::before { background: var(--light_yellow_color); cursor: pointer; }
+.playing_path.blue_grid_box.active_seed.active_blue::before, .playing_path.blue_grid_box.double_active_seed.double_active_blue::before, .playing_path.blue_grid_box.triple_active_seed.triple_active_blue::before, .playing_path.blue_grid_box.quadruple_active_seed.quadruple_active_blue::before { background: var(--blue_color); cursor: pointer; } 
+.playing_path.red_grid_box.active_seed.active_red::before, .playing_path.red_grid_box.double_active_seed.double_active_red::before, .playing_path.red_grid_box.triple_active_seed.triple_active_red::before, .playing_path.red_grid_box.quadruple_active_seed.quadruple_active_red::before { background: var(--dark_red_color); cursor: pointer; }
+/* Ends game and dashboard container */
+
+
+/* Game footer with copyright */
+.game_container footer {
+  margin: 1.2rem auto .5rem auto;
+  border: 1px solid var(--grey_color);
+  border-radius: 10px;
+  padding: 5px;
+  font-size: .9rem;
+  width: 98%;
+  text-align: center;
+}
+/* Ends game footer with copyright */
+/* Ends game container */
+
+/* Game instruction modal box to display about game */
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 500px;
+  padding: 2.5rem .5rem 1rem .5rem;
+  margin: auto;
+  border: .1px solid;
+  border-radius: 10px;
+  animation: animateModal 2s ease-in;
+  background: var(--very_dark_color);
+  z-index: 2;
+  color: #eee;
+  display: none;
+}
+
+/* Game aimation */
+@keyframes animateModal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+/* Ends game aimation */
+
+/* Game instruction cancel button */
+.close_modal_btn {
+  position: absolute;
+  top: .5rem;
+  right: .5rem;
+  padding: 2px 10px;
+  font-size: 1.2rem;
+  background: var(--dark_red_color);
+  color: #222;
+  border: 1px solid #eee;
+  border-radius: 50%;
+  z-index: 6;
+  cursor: pointer;
+}
+/* Ends game instruction cancel button */
+
+/* Game header container */
+.modal header {
+  background: #333;
+  padding: 4px;
+  margin: auto;
+  text-align: center;
+  font-size: 1.3rem;
+  width: 100%;
+}
+/* Ends game header container */
+
+/* Game instructions container */
+.modal .instructions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+.modal .instructions span {
+  width: 100%;
+  font-size: .8rem;
+  padding: 5px;
+  margin: 2px auto;
+}
+/* Ends game instructions container */
+/* Ends game instruction modal box to display about game */
+/* Happy coding */

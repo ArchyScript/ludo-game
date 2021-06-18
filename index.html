@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Ludo Game </title>
+    <link rel="stylesheet" href="ludo.css">
+  </head>
+  <body>
+    <!-- Entire gaming container -->
+    <div id="container"> 
+      <!-- Game and dashboard container -->
+      <div class="game_container" id="game_container">
+        <!-- Game header section -->
+        <header>
+          <!-- Players score dashboard and button container -->
+          <div class="header_grid_box_1">
+            <!-- Players score dashboard -->
+            <div class="section_1">
+              <span id="player_green_point"></span>
+              <span id="player_yellow_point"></span>
+              <span id="player_red_point"></span>
+              <span id="player_blue_point"></span>
+            </div> 
+            <!-- Ends players score dashboard -->
+
+            <!-- Action buttons -->
+            <div class="section_2">
+              <span id="reset_game_score_btn">Reset Score</span>
+              <span id="about_game_btn">About</span>
+              <span id="exit_game_btn">Exit</span>
+            </div>
+            <!-- Ends action buttons -->
+          </div>
+          <!-- Ends players score dashboard and button container -->
+
+          <!-- Dice container -->
+          <div id="dice_container">
+            <span id="players_turn"> </span>
+            <input type="number" id="first_dice" value=6 readonly>
+            <input type="number" id="second_dice" value=6 readonly>
+            <button id="roll_dice_btn"> 🎲 Roll Dice 🎲 </button>
+          </div> 
+          <!-- End dice container -->
+        </header>
+        <!-- End game header section -->
+
+        <!-- Game container -->
+        <main id="ludo_container" class="ludo_container">
+          <!-- Green home seed container -->
+          <div id="green_house" class="player_house"> 
+            <div id="green_seed_container" class="seed_container"> 
+              <span id="" class="green green_seed first_seed relative_position available_seed"> </span>
+              <span id="" class="green green_seed second_seed relative_position available_seed"> </span>
+              <span id="" class="green green_seed third_seed relative_position available_seed"> </span>
+              <span id="" class="green green_seed fourth_seed relative_position available_seed"> </span>
+            </div> 
+          </div> 
+          <!-- End green home seed container -->
+          
+          <!-- First vertical playing path (mainly yellow seed segment) -->
+          <div class="playing_path_container vertical"> 
+            <span  id="1" class="playing_path active_seed active_yellow">  </span>
+            <span id="2" data-end_yellow="2" class="playing_path format_text double_active_seed double_active_green">  </span>
+            <span id="3" class="playing_path triple_active_seed triple_active_green">  </span>
+            <span id="52" class="playing_path">  </span>
+            <span id="yellow_home_1" class="yellow_home_path home_path yellow_grid_box">  </span>
+            <span id="4" class="playing_path yellow_grid_box yellow_box_node">  </span>
+            <span id="51" class="playing_path">  </span>
+            <span id="yellow_home_2" class="yellow_home_path home_path yellow_grid_box">  </span>
+            <span id="5" class="playing_path active_seed active_green">  </span>
+            <span  id="50" class="playing_path  active_seed active_yellow">  </span> 
+            <span id="yellow_home_3" class="yellow_home_path home_path yellow_grid_box">  </span>
+            <span id="6" class="playing_path">  </span>
+            <span id="49" class="playing_path active_seed active_yellow">  </span>
+            <span id="yellow_home_4" class="yellow_home_path home_path yellow_grid_box">  </span>
+            <span  id="7" class="playing_path active_seed active_green">  </span>
+            <span id="48" class="playing_path double_active_seed double_active_yellow">  </span>
+            <span id="yellow_home_5" class="yellow_home_path home_path yellow_grid_box triple_active_seed triple_active_yellow">  </span>
+            <span id="8" class="playing_path active_seed active_red">  </span>
+          </div>
+          <!-- Ends first vertical playing path (mainly yellow seed segment) -->
+
+          <!-- Yellow home seed container -->
+          <div id="yellow_house" class="player_house"> 
+            <div id="yellow_seed_container" class="seed_container"> 
+              <span id="" class="yellow yellow _seed first_seed  relative_position available_seed"> </span>
+              <span id="" class="yellow yellow_seed second_seed  relative_position available_seed"> </span>
+              <span id="" class="yellow yellow_seed third_seed  relative_position available_seed"> </span>
+              <span id="" class="yellow yellow_seed fourth_seed  relative_position available_seed"> </span>
+            </div>
+          </div>
+          <!-- Ends yellow home seed container -->
+
+          <!-- First horizontal playing path (mainly green seed segment) -->
+          <div class="playing_path_container horizontal"> 
+            <span id="42" class="playing_path double_active_seed double_active_blue">  </span>
+            <span id="43" class="playing_path green_grid_box green_box_node">  </span>
+            <span id="44" class="playing_path quadruple_active_seed quadruple_active_blue">  </span>
+            <span id="45" class="playing_path quadruple_active_seed quadruple_active_red">  </span>
+            <span id="46" class="playing_path">  </span>
+            <span id="47" class="playing_path active_ seed active_ red">  </span>
+            <span id="41" class="playing_path quadruple_active_seed quadruple_active_yellow">  </span>
+            <span id="green_home_1" class="green_home_path home_path green_grid_box">  </span>
+            <span id="green_home_2" class="green_home_path home_path green_grid_box quadruple_active_seed quadruple_active_green">  </span>
+            <span id="green_home_3" class="green_home_path home_path green_grid_box active_seed active_green">  </span>
+            <span id="green_home_4" class="green_home_path home_path green_grid_box">  </span>
+            <span id="green_home_5" class="green_home_path home_path green_grid_box">  </span>
+            <span id="40" class="playing_path">  </span>
+            <span id="39" class="playing_path">  </span>
+            <span id="38" class="playing_path quadruple_active_seed quadruple_active_green">  </span>
+            <span id="37" class="playing_path triple_active_seed triple_active_red">  </span>
+            <span id="36" class="playing_path triple_active_seed triple_active_green">  </span>
+            <span id="35" class="playing_path triple_active_seed triple_active_blue">  </span>
+          </div>
+          <!-- Ends first horizontal playing path (mainly green seed segment) -->
+          
+          <!-- The center of the ludo game with different colors in arrow form -->
+          <div id="seed_home_container"> </div>
+          <!-- Ends the center of the ludo game with different colors in arrow form -->
+          
+          <!-- Second horizontal playing path (mainly blue seed segment) -->
+          <div class="playing_path_container horizontal"> 
+            <span id="9" class="playing_path double_active_seed double_active_green">  </span>
+            <span id="10" class="playing_path">  </span>
+            <span id="11" class="playing_path active_seed active_yellow">  </span>
+            <span id="12" class="playing_path active_seed active_blue">  </span>
+            <span id="13" class="playing_path">  </span>
+            <span id="14" class="playing_path">  </span> 
+            <span id="blue_home_5" class="blue_home_path home_path blue_grid_box active_seed active_blue">  </span>
+            <span id="blue_home_4" class="blue_home_path home_path blue_grid_box">  </span>
+            <span id="blue_home_3" class="blue_home_path home_path blue_grid_box">  </span>
+            <span id="blue_home_2" class="blue_home_path home_path blue_grid_box">  </span>
+            <span id="blue_home_1" class="blue_home_path home_path blue_grid_box double_active_seed double_active_blue">  </span>
+            <span id="15" class="playing_path">  </span>
+            <span id="21" class="playing_path">  </span>
+            <span id="20" class="playing_path double_active_seed double_active_red">  </span>
+            <span id="19" class="playing_path  active_seed active_green">  </span>
+            <span id="18" class="playing_path">  </span>
+            <span id="17" class="playing_path blue_grid_box blue_box_node active_seed active_blue">  </span>
+            <span id="16" class="playing_path active_seed active_red">  </span>
+          </div>
+          <!-- Ends second horizontal playing path (mainly blue seed segment) -->
+
+          <!-- Red home seed container -->
+          <div id="red_house" class="player_house"> 
+            <div id="red_seed_container" class="seed_container"> 
+              <span id="" class="red red _seed first_seed  relative_position available_seed"> </span>
+              <span id="" class="red red_seed second_seed  relative_position available_seed"> </span>
+              <span id="" class="red red_seed third_seed  relative_position available_seed"> </span>
+              <span id="" class="red red _seed fourth_seed  relative_position available_seed"> </span>
+            </div>  
+          </div>
+          <!-- Ends red home seed container -->
+
+          <!-- Second vertical playing path (mainly red seed segment) -->
+          <div class="playing_path_container vertical"> 
+            <span id="34" class="playing_path active_seed active_red">  </span>
+            <span id="red_home_5" class="red_home_path home_path red_grid_box active_seed active_red">  </span>
+            <span id="22" class="playing_path">  </span> 
+            <span id="33" class="playing_path active_seed active_red">  </span>
+            <span id="red_home_4" class="red_home_path home_path red_grid_box">  </span>
+            <span id="23" class="playing_path triple_active_seed triple_active_yellow">  </span>
+            <span id="32" class="playing_path active_seed active_yellow">  </span>
+            <span id="red_home_3" class="red_home_path home_path red_grid_box">  </span>
+            <span id="24" class="playing_path active_seed active_green">  </span>
+            <span id="31" class="playing_path">  </span>
+            <span id="red_home_2" class="red_home_path home_path red_grid_box">  </span>
+            <span id="25" class="playing_path quadruple_active_seed quadruple_active_green">  </span>
+            <span id="30" class="playing_path red_grid_box red_box_node">  </span>
+            <span id="red_home_1" class="red_home_path home_path red_grid_box">  </span>
+            <span id="26" class="playing_path">  </span>
+            <span id="29" class="playing_path">  </span>
+            <span id="28" class="playing_path">  </span>
+            <span id="27" class="playing_path">  </span>
+          </div> 
+          <!-- Ends second vertical playing path (mainly red seed segment) -->
+
+          <!-- Blue home seed container -->
+          <div id="blue_house" class="player_house"> 
+            <div id="blue_seed_container" class="seed_container"> 
+              <span id="" class="blue blue_seed first_seed  relative_position available_seed"> </span>
+              <span id="" class="blue blue _seed second_seed  relative_position available_seed"> </span>
+              <span id="" class="blue blue _seed third_seed  relative_position available_seed"> </span>
+              <span id="" class="blue blue_seed fourth_seed  relative_position available_seed"> </span>
+            </div>
+          </div>
+          <!-- Ends blue home seed container -->
+        </main>
+        <!-- Ends game conta  iner -->
+
+        <!-- Game footer with copyright -->
+        <footer>
+          Copyright &copy; Citonhub JavascriptMiniProject 2021 
+        </    footer> 
+        <!-- Ends game footer with copyright -->
+      </div> 
+
+      <!-- Game instruction modal box to display about game -->
+      <div class="modal" id="about_game">
+        <!-- Game instrunction cancel button -->
+        <span id="close_about_game_btn" class="close_modal_btn">&times;</span>
+        <!-- End game instrunction cancel button -->
+
+        <!-- Game instruction header -->
+        <header> 
+          <h3> About Game </h3>  
+        </header>
+        <!-- Ends game instruction header -->
+
+        <!-- Game instructions container -->
+        <div class="instructions">
+          <span> Player must replay game after a double six value figure is played</span>
+          <span> This game is fun 🤗</span>
+          <span> There are 8 🎱 possible ways to win</span>
+          <span> Made with love 💖  </span>
+          <span> Play with friends and track the winner through the  score board</span>
+          <span> Enjoy and have fun 😋 </span>
+          <span> Leave a comment 👇, we love to see 👁️ from your angle </span>
+        </div>
+        <!-- Ends game instructions container -->
+      </div>
+      <!-- Ends game instruction modal box to display about game -->
+    </div>
+    <!-- Entire gaming container -->
+
+
+    <div style="position: absolute; top: 1rem; right: 1rem;">
+      <button onclick="cheatDoubleSixForTesting()">Double Six</button>
+    </div>
+    <!-- Link Javacript file to HTML document-->
+    <script src="testing.js"></script>
+    <!-- Ends link Javacript file to HTML document-->
+  </body>
+</html>
