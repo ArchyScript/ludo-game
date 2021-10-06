@@ -448,20 +448,22 @@ function newJourneyFunction (toCountDice) {
             checkUnavailableOppositionHomeSeedBoolean = true
 
             // if (!firstDiceBoolean && !secondDiceBoolean) return console.log(899)
-            if (!diceBoolean) return console.log(899)
-            if (toCountDice != 6) return console.log(6999)
+            if (!diceBoolean) return console.log("can't count an empty dice")
+            if (toCountDice != 6) return console.log("Not a six... can't make move")
 
             function checkDoubleSixFunctiion() {
               if (toCountDice === firstDice.value && toCountDice === secondDice.value ) {
                 if (toCountDice == 6) {
                   doubleSixBoolean = true
+                  console.log("that's a double six")
                   return firstDice.value = ""
                 } else { 
+                  console.log("A double figure but not a six");
                   return firstDice.value = ""
                 } 
               } else {
-                 if (toCountDice === firstDice.value)  firstDice.value = "" 
-                 if (toCountDice === secondDice.value)  secondDice.value = "" 
+                if (toCountDice === firstDice.value)  firstDice.value = "" 
+                if (toCountDice === secondDice.value)  secondDice.value = "" 
               }
             }
             
@@ -469,113 +471,115 @@ function newJourneyFunction (toCountDice) {
             if (eachSeedInContainerClassList.toString().includes(eachHomeSeedClass)) {
               eachSeedInContainerClassList.remove(eachHomeSeedClass)
               console.log(eachHomeSeedClass)
-            if (playerNodeClassList.toString().includes(`${oppositionSeed1ActiveClass}`) || playerNodeClassList.toString().includes(`${oppositionSeed2ActiveClass}`) || playerNodeClassList.toString().includes(`${oppositionSeed3ActiveClass}`)) { 
-              if (playerName == "green") playerGreenPoint += 1
-              if (playerName == "yellow") playerYellowPoint += 1
-              if (playerName == "blue") playerBluePoint += 1
-              if (playerName == "red") playerRedPoint += 1
-            }
-            updatePlayersPointFunction()
-            checkWinnersAndEndGameFunction()
-            checkDoubleSixFunctiion()
-            diceBoolean = false
-            // firstDiceBoolean = false
-            // secondDiceBoolean = false
-            selectActiveSeedFunction (playerName)
-              
-           if (doubleSixBoolean) checkForDoubleSix()
-              
-           if (playerNodeClassList.toString().includes(`${oppositionSeed1ActiveClass}`)) { 
-         
-             if (playerNodeClassList.toString().includes(quadrupleSeedStatus , quadrupleOppositionSeed1ActiveClass)) { 
-               playerNodeClassList.remove(quadrupleSeedStatus , quadrupleOppositionSeed1ActiveClass)
-               playerNodeClassList.add(tripleSeedStatus , tripleOppositionSeed1ActiveClass)
-             } else if (playerNodeClassList.toString().includes(tripleSeedStatus , tripleOppositionSeed1ActiveClass)) { 
-               playerNodeClassList.remove(tripleSeedStatus , tripleOppositionSeed1ActiveClass)
-               playerNodeClassList.add(doubleSeedStatus , doubleOppositionSeed1ActiveClass)
-             } else if (playerNodeClassList.toString().includes(doubleSeedStatus , doubleOppositionSeed1ActiveClass)) { 
-               playerNodeClassList.remove(doubleSeedStatus , doubleOppositionSeed1ActiveClass)
-               playerNodeClassList.add(seedStatus , oppositionSeed1ActiveClass)
-             } else { 
-               playerNodeClassList.remove(seedStatus , oppositionSeed1ActiveClass)
-             } 
 
-             let homeSeedContainer = `${oppositionSeed1Name}_seed_container`
-             let allHomeSeeds = document.getElementById(homeSeedContainer).querySelectorAll(`.${oppositionSeed1Name}`)
-             return allHomeSeeds.forEach(eachAvailableSeed => {
-               if (!eachAvailableSeed.classList.toString().includes(`${oppositionSeed1Name}_seed`) && checkUnavailableOppositionHomeSeedBoolean) {
-                 checkUnavailableOppositionHomeSeedBoolean = false
-                 return eachAvailableSeed.classList.add(`${oppositionSeed1Name}_seed`)
-               }
-             })
-           }
+              if (playerNodeClassList.toString().includes(`${oppositionSeed1ActiveClass}`) || playerNodeClassList.toString().includes(`${oppositionSeed2ActiveClass}`) || playerNodeClassList.toString().includes(`${oppositionSeed3ActiveClass}`)) { 
+                if (playerName == "green") playerGreenPoint += 1
+                if (playerName == "yellow") playerYellowPoint += 1
+                if (playerName == "blue") playerBluePoint += 1
+                if (playerName == "red") playerRedPoint += 1
+              }
+              updatePlayersPointFunction()
+              checkWinnersAndEndGameFunction() 
+              checkDoubleSixFunctiion()
+              console.log(doubleSixBoolean)
+              diceBoolean = false
+              // firstDiceBoolean = false
+              // secondDiceBoolean = false
+              selectActiveSeedFunction(playerName)
+                
+              if (doubleSixBoolean) checkForDoubleSix()
+              
+              if (playerNodeClassList.toString().includes(`${oppositionSeed1ActiveClass}`)) { 
+            
+                if (playerNodeClassList.toString().includes(quadrupleSeedStatus , quadrupleOppositionSeed1ActiveClass)) { 
+                  playerNodeClassList.remove(quadrupleSeedStatus , quadrupleOppositionSeed1ActiveClass)
+                  playerNodeClassList.add(tripleSeedStatus , tripleOppositionSeed1ActiveClass)
+                } else if (playerNodeClassList.toString().includes(tripleSeedStatus , tripleOppositionSeed1ActiveClass)) { 
+                  playerNodeClassList.remove(tripleSeedStatus , tripleOppositionSeed1ActiveClass)
+                  playerNodeClassList.add(doubleSeedStatus , doubleOppositionSeed1ActiveClass)
+                } else if (playerNodeClassList.toString().includes(doubleSeedStatus , doubleOppositionSeed1ActiveClass)) { 
+                  playerNodeClassList.remove(doubleSeedStatus , doubleOppositionSeed1ActiveClass)
+                  playerNodeClassList.add(seedStatus , oppositionSeed1ActiveClass)
+                } else { 
+                  playerNodeClassList.remove(seedStatus , oppositionSeed1ActiveClass)
+                } 
+
+                let homeSeedContainer = `${oppositionSeed1Name}_seed_container`
+                let allHomeSeeds = document.getElementById(homeSeedContainer).querySelectorAll(`.${oppositionSeed1Name}`)
+                return allHomeSeeds.forEach(eachAvailableSeed => {
+                  if (!eachAvailableSeed.classList.toString().includes(`${oppositionSeed1Name}_seed`) && checkUnavailableOppositionHomeSeedBoolean) {
+                    checkUnavailableOppositionHomeSeedBoolean = false
+                    return eachAvailableSeed.classList.add(`${oppositionSeed1Name}_seed`)
+                  }
+                })
+              }
            
-           if (playerNodeClassList.toString().includes(`${oppositionSeed2ActiveClass}`)) { 
-             //  || playerNodeClassList.toString().includes(`${quadrupleOppositionSeed2ActiveClass}`)
-             
-             if (playerNodeClassList.toString().includes(quadrupleSeedStatus , quadrupleOppositionSeed2ActiveClass)) { 
-              playerNodeClassList.remove(quadrupleSeedStatus , quadrupleOppositionSeed2ActiveClass)
-               playerNodeClassList.add(tripleSeedStatus , tripleOppositionSeed2ActiveClass)
-             } else if (playerNodeClassList.toString().includes(tripleSeedStatus , tripleOppositionSeed2ActiveClass)) { 
-               playerNodeClassList.remove(tripleSeedStatus , tripleOppositionSeed2ActiveClass)
-               playerNodeClassList.add(doubleSeedStatus , doubleOppositionSeed2ActiveClass)
-             } else if (playerNodeClassList.toString().includes(doubleSeedStatus , doubleOppositionSeed2ActiveClass)) { 
-               playerNodeClassList.remove(doubleSeedStatus , doubleOppositionSeed2ActiveClass)
-               playerNodeClassList.add(seedStatus , oppositionSeed2ActiveClass)
-             } else { 
-               playerNodeClassList.remove(seedStatus , oppositionSeed2ActiveClass)
-             } 
+              if (playerNodeClassList.toString().includes(`${oppositionSeed2ActiveClass}`)) { 
+                //  || playerNodeClassList.toString().includes(`${quadrupleOppositionSeed2ActiveClass}`)
+                
+                if (playerNodeClassList.toString().includes(quadrupleSeedStatus , quadrupleOppositionSeed2ActiveClass)) { 
+                  playerNodeClassList.remove(quadrupleSeedStatus , quadrupleOppositionSeed2ActiveClass)
+                  playerNodeClassList.add(tripleSeedStatus , tripleOppositionSeed2ActiveClass)
+                } else if (playerNodeClassList.toString().includes(tripleSeedStatus , tripleOppositionSeed2ActiveClass)) { 
+                  playerNodeClassList.remove(tripleSeedStatus , tripleOppositionSeed2ActiveClass)
+                  playerNodeClassList.add(doubleSeedStatus , doubleOppositionSeed2ActiveClass)
+                } else if (playerNodeClassList.toString().includes(doubleSeedStatus , doubleOppositionSeed2ActiveClass)) { 
+                  playerNodeClassList.remove(doubleSeedStatus , doubleOppositionSeed2ActiveClass)
+                  playerNodeClassList.add(seedStatus , oppositionSeed2ActiveClass)
+                } else { 
+                  playerNodeClassList.remove(seedStatus , oppositionSeed2ActiveClass)
+                } 
 
-             let homeSeedContainer = `${oppositionSeed2Name}_seed_container`
-             let allHomeSeeds = document.getElementById(homeSeedContainer).querySelectorAll(`.${oppositionSeed2Name}`)
-             return allHomeSeeds.forEach(eachAvailableSeed => {
-               if (!eachAvailableSeed.classList.toString().includes(`${oppositionSeed2Name}_seed`) && checkUnavailableOppositionHomeSeedBoolean) {
-                 checkUnavailableOppositionHomeSeedBoolean = false
-                 return eachAvailableSeed.classList.add(`${oppositionSeed2Name}_seed`)
-               }
-             })
-           }
+                let homeSeedContainer = `${oppositionSeed2Name}_seed_container`
+                let allHomeSeeds = document.getElementById(homeSeedContainer).querySelectorAll(`.${oppositionSeed2Name}`)
+                return allHomeSeeds.forEach(eachAvailableSeed => {
+                  if (!eachAvailableSeed.classList.toString().includes(`${oppositionSeed2Name}_seed`) && checkUnavailableOppositionHomeSeedBoolean) {
+                    checkUnavailableOppositionHomeSeedBoolean = false
+                    return eachAvailableSeed.classList.add(`${oppositionSeed2Name}_seed`)
+                  }
+                })
+              }
         
-           if (playerNodeClassList.toString().includes(`${oppositionSeed3ActiveClass}`)) { 
-             //  || playerNodeClassList.toString().includes(`${quadrupleOppositionSeed3ActiveClass}`)
-             
-              if (playerNodeClassList.toString().includes(quadrupleSeedStatus , quadrupleOppositionSeed3ActiveClass)) { 
-                playerNodeClassList.remove(quadrupleSeedStatus , quadrupleOppositionSeed3ActiveClass)
-                playerNodeClassList.add(tripleSeedStatus , tripleOppositionSeed3ActiveClass)
-              } else if (playerNodeClassList.toString().includes(tripleSeedStatus , tripleOppositionSeed3ActiveClass)) { 
-                playerNodeClassList.remove(tripleSeedStatus , tripleOppositionSeed3ActiveClass)
-                playerNodeClassList.add(doubleSeedStatus , doubleOppositionSeed3ActiveClass)
-              } else if (playerNodeClassList.toString().includes(doubleSeedStatus , doubleOppositionSeed3ActiveClass)) { 
-                playerNodeClassList.remove(doubleSeedStatus , doubleOppositionSeed3ActiveClass)
-                playerNodeClassList.add(seedStatus , oppositionSeed3ActiveClass)
-              } else { 
-                playerNodeClassList.remove(seedStatus , oppositionSeed3ActiveClass)
-              } 
+              if (playerNodeClassList.toString().includes(`${oppositionSeed3ActiveClass}`)) { 
+                //  || playerNodeClassList.toString().includes(`${quadrupleOppositionSeed3ActiveClass}`)
+                
+                if (playerNodeClassList.toString().includes(quadrupleSeedStatus , quadrupleOppositionSeed3ActiveClass)) { 
+                  playerNodeClassList.remove(quadrupleSeedStatus , quadrupleOppositionSeed3ActiveClass)
+                  playerNodeClassList.add(tripleSeedStatus , tripleOppositionSeed3ActiveClass)
+                } else if (playerNodeClassList.toString().includes(tripleSeedStatus , tripleOppositionSeed3ActiveClass)) { 
+                  playerNodeClassList.remove(tripleSeedStatus , tripleOppositionSeed3ActiveClass)
+                  playerNodeClassList.add(doubleSeedStatus , doubleOppositionSeed3ActiveClass)
+                } else if (playerNodeClassList.toString().includes(doubleSeedStatus , doubleOppositionSeed3ActiveClass)) { 
+                  playerNodeClassList.remove(doubleSeedStatus , doubleOppositionSeed3ActiveClass)
+                  playerNodeClassList.add(seedStatus , oppositionSeed3ActiveClass)
+                } else { 
+                  playerNodeClassList.remove(seedStatus , oppositionSeed3ActiveClass)
+                } 
 
-              let homeSeedContainer = `${oppositionSeed3Name}_seed_container`
-              let allHomeSeeds = document.getElementById(homeSeedContainer).querySelectorAll(`.${oppositionSeed3Name}`)
-              return allHomeSeeds.forEach(eachAvailableSeed => {
-                if (!eachAvailableSeed.classList.toString().includes(`${oppositionSeed3Name}_seed`) && checkUnavailableOppositionHomeSeedBoolean) {
-                  checkUnavailableOppositionHomeSeedBoolean = false
-                  return eachAvailableSeed.classList.add(`${oppositionSeed3Name}_seed`)
-                }
-              })
-            }
-        /**/
+                let homeSeedContainer = `${oppositionSeed3Name}_seed_container`
+                let allHomeSeeds = document.getElementById(homeSeedContainer).querySelectorAll(`.${oppositionSeed3Name}`)
+                return allHomeSeeds.forEach(eachAvailableSeed => {
+                  if (!eachAvailableSeed.classList.toString().includes(`${oppositionSeed3Name}_seed`) && checkUnavailableOppositionHomeSeedBoolean) {
+                    checkUnavailableOppositionHomeSeedBoolean = false
+                    return eachAvailableSeed.classList.add(`${oppositionSeed3Name}_seed`)
+                  }
+                })
+              }
+        
               if (playerNodeClassList.toString().includes(`${seedStatus} active_${playerName}`)) {
-                 playerNodeClassList.remove(seedStatus , `active_${playerName}`)
-                 playerNodeClassList.add(doubleSeedStatus , `double_active_${playerName}`)
+                playerNodeClassList.remove(seedStatus , `active_${playerName}`)
+                playerNodeClassList.add(doubleSeedStatus , `double_active_${playerName}`)
                 return console.log("testing geddhrrm")//firstDice.value = ""
               } else if (playerNodeClassList.toString().includes(`${doubleSeedStatus} double_active_${playerName}`)) {
-                 playerNodeClassList.remove(doubleSeedStatus , `double_active_${playerName}`)
-                 playerNodeClassList.add(tripleSeedStatus , `triple_active_${playerName}`)
+                playerNodeClassList.remove(doubleSeedStatus , `double_active_${playerName}`)
+                playerNodeClassList.add(tripleSeedStatus , `triple_active_${playerName}`)
                 return console.log("testing rehj;awi")//firstDice.value = ""
               } if (playerNodeClassList.toString().includes(`${tripleSeedStatus} triple_active_${playerName}`)) {
-                 playerNodeClassList.remove(tripleSeedStatus , `triple_active_${playerName}`)
-                 playerNodeClassList.add(quadrupleSeedStatus , `quadruple_active_${playerName}`)
+                playerNodeClassList.remove(tripleSeedStatus , `triple_active_${playerName}`)
+                playerNodeClassList.add(quadrupleSeedStatus , `quadruple_active_${playerName}`)
                 return console.log("testing opweyweik")// firstDice.value = ""
               } else {
-                 playerNodeClassList.add(seedStatus , `active_${playerName}`)
+                playerNodeClassList.add(seedStatus , `active_${playerName}`)
                 return console.log("testing dnepriertoo")// firstDice.value = ""
               }
             }
@@ -642,6 +646,8 @@ function selectActiveSeedFunction (activeSeed) {
 
 // Check for a double six dice value
 function checkForDoubleSix () {
+  if (!doubleSixBoolean) console.log("doublle six is not true");
+
   checkForDoubleSixArray = [
     { playerName: "green", playersTurnInnerHTML: "Green's turn", playerStatus: playerGreen, nextPlayerName: "yellow", nextPlayersTurnInnerHTML: "Yellow's turn"},
     { playerName: "yellow", playersTurnInnerHTML: "Yellow's turn", playerStatus: playerYellow, nextPlayerName: "blue", nextPlayersTurnInnerHTML: "Blue's turn"},
@@ -655,9 +661,12 @@ function checkForDoubleSix () {
     let nextPlayerName = eachChangePlayerTurnObject.nextPlayerName
     let nextPlayersTurnInnerHTML = eachChangePlayerTurnObject.nextPlayersTurnInnerHTML
   
+    console.log(`${playerName} = ${playerStatus}`)
+
     if (playerStatus && doubleSixBoolean) {
       selectActiveSeedFunction(playerName)
       doubleSixBoolean = false
+      console.log(`${playerStatus} ajalaorerjer[ v]`)
       return displayInnerHTML("players_turn", playersTurnInnerHTML)
     } else if (playerStatus && !doubleSixBoolean) {
       selectActiveSeedFunction(nextPlayerName)
@@ -775,8 +784,8 @@ function countSeedInHomePathFunction (toCountDice) {
   }
   
   // diceBoolean = false
-  console.log(diceBoolean)
-  checkIfPlayerMoveIsValidBoolean = true
+  // console.log(diceBoolean)
+  // checkIfPlayerMoveIsValidBoolean = true
 
   // if (checkIfPlayerMoveIsValidBoolean) {
     if (playerGreen) return startCountingFunction("green")
@@ -1230,6 +1239,7 @@ rollDiceBtn.onclick = () => rollDiceFunction()
 */
 // 
 firstDice.onclick = () => { 
+  console.log(diceBoolean)
   if (!firstDice.value) return
   // 
   diceBoolean = true            
@@ -1241,6 +1251,7 @@ firstDice.onclick = () => {
 } 
 // 
 secondDice.onclick = () => {
+  console.log(diceBoolean)
   if (!secondDice.value) return
   diceBoolean = true   
   // firstDiceBoolean = true
