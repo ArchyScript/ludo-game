@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Ludo Game </title>
+    <title>Ludo Game</title>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
@@ -37,8 +37,8 @@
           <!-- Dice container -->
           <div id="dice_container">
             <span id="players_turn"> </span>
-            <input type="number" id="first_dice" value=6 readonly>
-            <input type="number" id="second_dice" value=6 readonly>
+            <input type="number" id="first_dice" readonly>
+            <input type="number" id="second_dice" readonly>
             <button id="roll_dice_btn"> 🎲 Roll Dice 🎲 </button>
           </div> 
           <!-- End dice container -->
@@ -192,7 +192,7 @@
         <!-- Game footer with copyright -->
         <footer>
           Copyright &copy; Citonhub JavascriptMiniProject 2021 
-        </    footer> 
+        </footer> 
         <!-- Ends game footer with copyright -->
       </div> 
 
@@ -225,9 +225,6 @@
     <!-- Entire gaming container -->
 
 
-    <div style="position: absolute; top: 1rem; right: 1rem;">
-      <button onclick="cheatDoubleSixForTesting()">Double Six</button>
-    </div>
     <!-- Link Javacript file to HTML document-->
     <script src="testing.js"></script>
     <!-- Ends link Javacript file to HTML document-->

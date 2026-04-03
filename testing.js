@@ -8,6 +8,12 @@ function displayInnerHTML (eventId, eventInnerHTML) {
 const firstDice = document.getElementById("first_dice")
 const secondDice = document.getElementById("second_dice")
 const rollDiceBtn = document.getElementById("roll_dice_btn")
+const resetGameScoreBtn = document.getElementById("reset_game_score_btn")
+const aboutGameBtn = document.getElementById("about_game_btn")
+const exitGameBtn = document.getElementById("exit_game_btn")
+const aboutGameModal = document.getElementById("about_game")
+const closeAboutGameBtn = document.getElementById("close_about_game_btn")
+const gameContainer = document.getElementById("container")
 // QuerySelectors
 // Playings paths
 const allPlayingPaths = document.querySelectorAll(".playing_path")
@@ -16,13 +22,36 @@ const allGreenHomeSeeds = document.getElementById("green_seed_container").queryS
 const allYellowHomeSeeds = document.getElementById("yellow_seed_container").querySelectorAll(".yellow")
 const allBlueHomeSeeds = document.getElementById("blue_seed_container").querySelectorAll(".blue")
 const allRedHomeSeeds = document.getElementById("red_seed_container").querySelectorAll(".red")
+function clearDiceValues () {
+  firstDice.value = ""
+  secondDice.value = ""
+}
+
+function closeAboutModalFunction () {
+  aboutGameModal.style.display = "none"
+}
+
+function showAboutModalFunction () {
+  aboutGameModal.style.display = "block"
+}
+
+function exitGameFunction () {
+  gameContainer.innerHTML = `
+    <div class="game_container">
+      <header>
+        <div id="players_turn">Game exited</div>
+      </header>
+      <footer>Refresh the page to start a new match.</footer>
+    </div>
+  `
+}
 // Boolean value to toggle between each players turn
 let playerGreen = false
 let playerYellow = false
 let playerRed = false
 let playerBlue = false
 // 
-let diceBoolean = true 
+let diceBoolean = false 
 // let firstDiceBoolean = false
 // let secondDiceBoolean = false
 // 
@@ -69,12 +98,7 @@ const allSeedCombinations = [
 
 // Call some basic function when the game loads to start game properly
 document.querySelector("body").onload = () => {
-  // Select the first player's turn which is by default player green's turn
-  selectActiveSeedFunction("green")
-  // Update all players point usually set to zero(0) since it's most likey a new game
-  updatePlayersPointFunction()
-  // Displays the first players turn (player green's turn by default)
-  displayInnerHTML("players_turn", "Green's turn")
+  startNewGameFunction()
 }
 
 /* 
@@ -126,7 +150,11 @@ function startNewGameFunction () {
   removeAllActiveSeedInPlayingPathFunction("blue")
   removeAllActiveSeedInPlayingPathFunction("red")
   // Resets doubleSixBoolean value to false
-    doubleSixBoolean = false
+  doubleSixBoolean = false
+  diceBoolean = false
+  checkIfPlayerMoveIsValidBoolean = false
+  clearDiceValues()
+  closeAboutModalFunction()
   // Selects a default active seed (player green by default)
   selectActiveSeedFunction("green")
   // Displays the first players turn (player green's turn by default)
@@ -625,7 +653,7 @@ function rollDiceFunction () {
   let randomNumberOne = Math.floor((Math.random()  * 6) + 1)
   let randomNumberTwo = Math.floor((Math.random()  * 6) + 1)
   //  STEP 2
-  // if (firstDice.value != "" || secondDice.value != "" ) return
+  if (firstDice.value != "" || secondDice.value != "" ) return
   //  STEP 3
   firstDice.value = randomNumberOne
   secondDice.value = randomNumberTwo
@@ -677,10 +705,22 @@ function checkForDoubleSix () {
 
 // 
 function checkWinnersAndEndGameFunction () {
-  if (playerGreenPoint === 4 && playerYellowPoint === 4 && playerBluePoint === 4 && playerRedPoint < 4) console.log("Red Lost")
-  if (playerGreenPoint === 4 && playerYellowPoint === 4 && playerBluePoint < 4 && playerRedPoint === 4) console.log("Blue Lost")
-  if (playerGreenPoint === 4 && playerYellowPoint < 4 && playerBluePoint === 4 && playerRedPoint === 4) console.log("Yellow Lost")
-  if (playerGreenPoint < 4 && playerYellowPoint === 4 && playerBluePoint === 4 && playerRedPoint === 4) console.log("Green Lost")
+  if (playerGreenPoint === 4 && playerYellowPoint === 4 && playerBluePoint === 4 && playerRedPoint < 4) {
+    alert("Red lost the game.")
+    return startNewGameFunction()
+  }
+  if (playerGreenPoint === 4 && playerYellowPoint === 4 && playerBluePoint < 4 && playerRedPoint === 4) {
+    alert("Blue lost the game.")
+    return startNewGameFunction()
+  }
+  if (playerGreenPoint === 4 && playerYellowPoint < 4 && playerBluePoint === 4 && playerRedPoint === 4) {
+    alert("Yellow lost the game.")
+    return startNewGameFunction()
+  }
+  if (playerGreenPoint < 4 && playerYellowPoint === 4 && playerBluePoint === 4 && playerRedPoint === 4) {
+    alert("Green lost the game.")
+    return startNewGameFunction()
+  }
 
   // This function will perform a simple task for player that lost the game 
   // 
@@ -1226,6 +1266,14 @@ function resetAllPlayersPointFunction () {
   Onclick on the roll dice button, call the rollDiceFunction to perform assign task
 */
 rollDiceBtn.onclick = () => rollDiceFunction()
+resetGameScoreBtn.onclick = () => {
+  if (confirm("Reset the current game?")) startNewGameFunction()
+}
+aboutGameBtn.onclick = () => showAboutModalFunction()
+closeAboutGameBtn.onclick = () => closeAboutModalFunction()
+exitGameBtn.onclick = () => {
+  if (confirm("Exit this match?")) exitGameFunction()
+}
 
 /* 
   Onclick on any of the two dice {
@@ -1259,6 +1307,14 @@ secondDice.onclick = () => {
   newJourneyFunction(secondDice.value) 
   countDiceFunction(secondDice.value)
   countSeedInHomePathFunction(secondDice.value)
+}
+
+window.onclick = event => {
+  if (event.target === aboutGameModal) closeAboutModalFunction()
+}
+
+document.onkeydown = event => {
+  if (event.key === "Escape") closeAboutModalFunction()
 }
 
 
